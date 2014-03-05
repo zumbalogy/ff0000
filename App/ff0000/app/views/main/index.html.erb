@@ -1,0 +1,32 @@
+<style type="text/css">
+		body {background-color: grey;}
+    .red{ background-color: red;}
+</style>
+
+<script type="text/javascript">
+  $('body').on('click', function(){
+
+    $('body').toggleClass('red');
+
+      $.ajax({
+        url: '/toggle',
+        method: 'post'
+      })
+
+  })
+
+setInterval(function(event){
+	$.ajax({
+		url: '/status',
+		method: 'get',
+		success: function(data){
+			if (data.status === 1) {
+				$('body').attr('class', 'red');
+			} else {
+				$('body').attr('class', '');
+			}
+		}
+	})
+}, 1000)
+
+</script>
